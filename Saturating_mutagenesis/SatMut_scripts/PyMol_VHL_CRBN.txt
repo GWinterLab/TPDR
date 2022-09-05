@@ -1,0 +1,100 @@
+##############################################################################
+#
+# VHL
+# 4W9H 
+##############################################################################
+
+
+
+reinitialize everything;
+bg_color white
+run pymol_data2bfactor.py
+run pymol_spectrumany.py
+
+
+
+set assembly, 1
+
+fetch 4W9H; split_chains; 
+
+delete 4W9H_B 4W9H_A 4W9H
+
+remove solvent
+
+show surface, 4W9H_C
+hide cartoon, 4W9H_C
+
+
+#MEDIAN
+
+#################################
+# minmax-normalized log2FC values
+
+alter 4W9H_C, b=-0.69
+
+data2b_res 4W9H_C, minmax_norm_heatmaps__VHL_mean_of_positive_log2FC_values_5_degraders_MEDIAN_value_per_residue.txt
+
+
+spectrum b, white_grey80_violetpurple, 4W9H_C, minimum=-0.69, maximum=0.69
+
+#################################
+
+color grey60, ((i. 301 ) and 4W9H_C )
+
+#Settings -> rendering -> shadows -> none
+ray 2400, 2400
+
+
+
+
+
+
+
+
+
+########################################################################################################
+##########################
+##########################
+#
+# CRBN
+# 6BOY Crystal structure of DDB1-CRBN-BRD4(BD1) complex bound to dBET6 PROTAC. 
+#
+##########################
+##########################
+########################################################################################################
+
+
+reinitialize everything;
+bg_color white
+run pymol_data2bfactor.py
+run pymol_spectrumany.py
+
+
+
+# CRBN
+set assembly, 1
+fetch 6BOY; split_chains; 
+
+delete 6BOY_A 6BOY_C
+
+hide cartoon, 6BOY_B
+
+show surface, 6BOY_B
+
+
+
+
+#MEDIAN
+
+#################################
+# minmax-score normalized log2FC values
+
+alter 6BOY_B, b=-0.714
+
+data2b_res 6BOY_B, minmax_norm_heatmaps__CRBN_mean_of_pos_log2FC_values_4_degraders_MEDIAN_value_per_residue.txt
+
+spectrum b, white_grey80_violetpurple, 6BOY_B, minimum=-0.714, maximum=0.714
+color grey90, ((i. 501 ) and 6BOY_B )
+
+ray 2400, 2400
+
